@@ -5,10 +5,33 @@ class Node:
         self.left = left
         self.right = right
 
-def compare(tree, search_value):
-    # Write your solution here!
-    pass
+def compare_helper(tree):
+    current = tree
+    smallest = 0
+    largest = 0
 
+    while current.left:
+        current = current.left
+    smallest = current.value
+
+    current = tree
+
+    while current.right:
+        current = current.right
+    largest = current.value
+    
+    return smallest, largest
+
+
+def compare(tree, search_value):
+    values = compare_helper(tree)
+    if search_value < values[0]:
+        return "smaller"
+    elif search_value > values[1]:
+        return "bigger"
+    else:
+        return "spanned"
+   
 
 r"""
            6
